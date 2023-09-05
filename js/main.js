@@ -273,3 +273,22 @@ methods: {
         this.about.lengthColumn1 = this.column1.arr.length;
         localStorage.about = JSON.stringify(this.about)
     },
+    del_1(id) {
+        this.column1.arr.splice(id, 1);
+        this.length()
+        localStorage.todo = JSON.stringify(this.column1.arr);
+    },
+    del_2(id) {
+        this.column2.arr.splice(id, 1);
+        this.about.signal = false
+        this.left_colm(this.about.id)
+        localStorage.about = JSON.stringify(this.about)
+        localStorage.todo2 = JSON.stringify(this.column2.arr);
+    },
+    del_3(id) {
+        this.column3.arr.splice(id, 1);
+        localStorage.todo3 = JSON.stringify(this.column3.arr);
+    },
+   
+},
+})
