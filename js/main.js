@@ -264,4 +264,12 @@ methods: {
         localStorage.todo = JSON.stringify(this.column1.arr);
         localStorage.todo2 = JSON.stringify(this.column2.arr);
     },
-    
+    timeAndData(id) {
+        let Data = new Date();
+        this.column2.arr[id].time = Data.getHours() + ':' + Data.getMinutes();
+        this.column2.arr[id].date = Data.getDate() + ':' + Data.getMonth() + ':' + Data.getFullYear();
+    },
+    length(){
+        this.about.lengthColumn1 = this.column1.arr.length;
+        localStorage.about = JSON.stringify(this.about)
+    },
