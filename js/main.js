@@ -34,7 +34,7 @@ Vue.component('task', {
     <div class="list">
             <div class="note_title_block">
                 <h2 class="note_title">{{datas.request}}</h2>
-                <button 
+                <button class="del"
                 v-on:click="delNote()">
                 Delete
                 </button>
@@ -67,9 +67,9 @@ Vue.component('task', {
                         <input required type="text" 
                         v-on:keyup.enter="addTask(),
                         column2MoveLeft()" 
-                        v-model="taskTitle" placeholder="Задача">
+                        v-model="taskTitle" placeholder="Task">
                     </div>
-                    <button 
+                    <button class="input_button"
                     v-on:click="addTask(),
                     column2MoveLeft()">
                     Input

@@ -17,7 +17,7 @@
           <input v-model="Task1" :disabled="column1.arr.length === 3" placeholder="First note">
           <input v-model="Task2" :disabled="column1.arr.length === 3" placeholder="Second note">
           <input v-model="Task3" :disabled="column1.arr.length === 3" placeholder="Third note">
-          <input type="submit" value="Add" :class="{disabled: column1.arr.length === 3}">
+          <input type="submit" value="Add" class="add_button" :class="{disabled: column1.arr.length === 3}">
       </form>
     </div>
   <br>
