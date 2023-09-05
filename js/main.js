@@ -78,4 +78,22 @@ Vue.component('task', {
         </div>
     </div>
     `,
-})
+methods: {
+    deleteContent(id) {
+        if(this.datas.tasks.length > 3 && this.id_column == 1)
+        this.datas.tasks.splice(id,1)
+        this.save_task()
+    },
+    delNote() {
+        this.$emit('del_note')
+    },
+    column1Move() {
+        this.$emit('column1_move')
+    },
+    column2Move() {
+        this.$emit('column2_move')
+    },
+    column2MoveLeft() {
+        this.$emit('column2_move_left')
+    }
+}})
