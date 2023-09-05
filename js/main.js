@@ -254,3 +254,14 @@ methods: {
         localStorage.todo3 = JSON.stringify(this.column3.arr);
         localStorage.about = JSON.stringify(this.about)
     },
+    right_colm(id) {
+        if (this.column2.arr[id].completedNum <= 50) {
+            this.column1.arr.unshift(this.column2.arr[id]);
+            this.column2.arr.splice(id, 1);
+            this.left_colm(this.about.id)
+        }
+        this.length()
+        localStorage.todo = JSON.stringify(this.column1.arr);
+        localStorage.todo2 = JSON.stringify(this.column2.arr);
+    },
+    
