@@ -9,6 +9,17 @@
   <script defer src="js/main.js"></script>
 </head>
 <body>
-  
+  <div id="app">
+    <div class="search">
+      <h1>Lists</h1>
+      <form v-on:submit.prevent="forms">
+          <input v-model="request" :disabled="column1.arr.length === 3" placeholder="Order">
+          <input v-model="Task1" :disabled="column1.arr.length === 3" placeholder="First note">
+          <input v-model="Task2" :disabled="column1.arr.length === 3" placeholder="Second note">
+          <input v-model="Task3" :disabled="column1.arr.length === 3" placeholder="Third note">
+          <input type="submit" value="Add" :class="{disabled: column1.arr.length === 3}">
+      </form>
+    </div>
+  <br>
 </body>
 </html>
