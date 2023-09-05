@@ -46,3 +46,58 @@
   .column3 {
     order: 3;
   }
+  .note_title_block{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  h1, h2{
+    text-align: center;
+    margin-right: 10px;
+  }
+  
+  
+  
+  .task{
+    border: 5px solid rgb(0, 0, 0);
+    border-radius: 20px;
+    padding: 3px;
+    min-width: 100px;
+    margin: 10px;
+  }
+  
+  .title_task{
+    text-align: center;
+  }
+  
+  
+  
+  .add_task{
+    padding: 3px;
+  }
+  
+  li{
+    list-style: none;
+  }
+  
+  .none{
+    display: none;
+  }
+  
+  .disabled{
+    color: rgb(93, 6, 151);
+    pointer-events: none;
+  }
+  
+  
+  
+  
+  input{
+    height: 30px;
+    border: 3px solid rgb(52, 82, 255);
+    border-radius: 30px;
+    padding-left: 5px;
+    text-align: center;
+    
+  }

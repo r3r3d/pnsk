@@ -78,22 +78,116 @@ Vue.component('task', {
         </div>
     </div>
     `,
-methods: {
-    deleteContent(id) {
-        if(this.datas.tasks.length > 3 && this.id_column == 1)
-        this.datas.tasks.splice(id,1)
-        this.save_task()
+    methods: {
+        deleteContent(id) {
+            if(this.datas.tasks.length > 3 && this.id_column == 1)
+            this.datas.tasks.splice(id,1)
+            this.save_task()
+        },
+        delNote() {
+            this.$emit('del_note')
+        },
+        column1Move() {
+            this.$emit('column1_move')
+        },
+        column2Move() {
+            this.$emit('column2_move')
+        },
+        column2MoveLeft() {
+            this.$emit('column2_move_left')
+        },
+        updateCompletedNum() {
+            let counterCompleted = 0;
+            let counterNotCompleted = 0;
+            for (let el of this.datas.tasks) {
+                if (el.completed) {
+                    counterCompleted++;
+                } else {
+                    counterNotCompleted++;
+                }
+            }
+            this.datas.completedNum = (counterCompleted / (counterCompleted + counterNotCompleted)) * 100;
+        },
+        save_task() {
+            // if (this.task_id === 1 && this.datas.completedNum <= 50) localStorage.todo = JSON.stringify(this.arr);
+            // else if (this.task_id === 3 && this.datas.completedNum === 100) localStorage.todo3 = JSON.stringify(this.arr);
+            // else localStorage.todo2 = JSON.stringify(this.arr);
+            if (this.id_column == 1)  localStorage.todo = JSON.stringify(this.arr);
+            if (this.id_column == 2)  localStorage.todo2 = JSON.stringify(this.arr);
+            if (this.id_column == 2)  localStorage.todo3 = JSON.stringify(this.arr);
+        },
+        addTask() {
+            if (this.taskTitle) {
+                this.datas.tasks.push({
+                    taskTitle: this.taskTitle,
+                    completed: false,
+                });
+                this.taskTitle = null;
+                this.updateCompletedNum();
+                this.save_task();
+            }
+        },
+        checkbox(id) {
+            this.datas.tasks[id].completed = !this.datas.tasks[id].completed;
+            this.updateCompletedNum();
+            this.save_task();
+        },
+        
+        
+        data() {
+            return {
+                taskTitle: null,
+                task: [],
+            }
+        },
     },
-    delNote() {
-        this.$emit('del_note')
+    
+})
+
+
+
+
+let app = new Vue({
+    el: '#app',
+    data: {
+        column1: {
+            arr: [],
+            task_id: 1
+        },
+        column2: {
+            arr: [],
+            task_id: 2
+        },
+        column3: {
+            arr: [],
+            task_id: 3
+        },
+        request: null,
+        Task1: null,
+        Task2: null,
+        Task3: null,
+        completed: false,
+        about:{
+            signal: false,
+            bufColumn: [],
+            id: null,
+            lengthColumn1: null,
+          
+        },
     },
-    column1Move() {
-        this.$emit('column1_move')
+    computed: {},
+    mounted() {
+        if (localStorage.todo) {
+            this.column1.arr = JSON.parse(localStorage.todo)
+        }
+        if (localStorage.todo2) {
+            this.column2.arr = JSON.parse(localStorage.todo2)
+        }
+        if (localStorage.todo3) {
+            this.column3.arr = JSON.parse(localStorage.todo3)
+        }
+        if (localStorage.about){
+            this.about = JSON.parse(localStorage.about)
+        }
     },
-    column2Move() {
-        this.$emit('column2_move')
-    },
-    column2MoveLeft() {
-        this.$emit('column2_move_left')
-    }
-}})
+})
