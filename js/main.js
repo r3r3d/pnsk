@@ -190,4 +190,34 @@ let app = new Vue({
             this.about = JSON.parse(localStorage.about)
         }
     },
-})
+methods: {
+        
+    forms() {
+        if (this.request && this.column1.arr.length < 3 && this.Task1 && this.Task2 && this.Task3) {
+            this.column1.arr.push({
+                request: this.request,
+                tasks: [
+                    {
+                        taskTitle: this.Task1,
+                        completed: this.completed
+                    },
+                    {
+                        taskTitle: this.Task2,
+                        completed: this.completed
+                    },
+                    {
+                        taskTitle: this.Task3,
+                        completed: this.completed
+                    }
+                ],
+                completedNum: 0,
+            });
+            this.request = null;
+            this.Task1 = null;
+            this.Task2 = null;
+            this.Task3 = null
+            localStorage.todo = JSON.stringify(this.column1.arr);
+        }
+        this.length()
+    },
+}})
