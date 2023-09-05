@@ -242,3 +242,15 @@ methods: {
         localStorage.todo2 = JSON.stringify(this.column2.arr);
         localStorage.about = JSON.stringify(this.about)
     },
+    center_colm(id) {
+        if (this.column2.arr[id].completedNum === 100) {
+            this.timeAndData(id);
+            this.column3.arr.push(this.column2.arr[id]);
+            this.column2.arr.splice(id, 1);
+            this.left_colm(this.about.id)
+            this.about.signal = false
+        }
+        localStorage.todo2 = JSON.stringify(this.column2.arr);
+        localStorage.todo3 = JSON.stringify(this.column3.arr);
+        localStorage.about = JSON.stringify(this.about)
+    },
