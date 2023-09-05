@@ -21,5 +21,33 @@
       </form>
     </div>
   <br>
+  <div class="container">
+    <div class="column column1" :class="{disabled: about.signal}">
+        {{column1.task_id}}
+          <task
+            v-on:del_note="del_1(index)"
+            v-on:column1_move="left_colm(index)":arr="column1.arr":id_column="column1.task_id":about="about"
+            :datas="datas"
+            v-for="(datas, index) in column1.arr":key="index">
+          </task>
+    </div>
+      <div class="column column2">
+          {{column2.task_id}}
+            <task 
+              v-on:del_note="del_2(index)" 
+              v-on:column2_move="center_colm(index)" :id_column="column2.task_id" :about="about"
+              v-on:column2_move_left="right_colm(index)":arr="column2.arr":datas="datas"
+              v-for="(datas, index) in column2.arr":key="index">
+            </task>
+      </div>
+        <div class="column column3">
+            {{column3.task_id}}
+              <task 
+                v-on:del_note="del_3(index)":arr="column3.arr":datas="datas":id_column="column3.task_id":about="about"
+                v-for="(datas, index) in column3.arr":key="index">
+              </task>
+        </div>
+</div>
+</div>
 </body>
 </html>
