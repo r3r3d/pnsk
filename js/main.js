@@ -220,4 +220,25 @@ methods: {
         }
         this.length()
     },
-}})
+    left_colm(id) {
+        if (this.column1.arr[id].completedNum > 50 && this.column2.arr.length <= 5) {
+            if (this.column2.arr.length === 5) {
+                this.about.signal = true;
+                this.about.bufColumn.push(this.column1.arr[id])
+                this.about.id = id
+            }
+            else if(this.about.bufColumn[0] && this.column2.arr.length === 4){
+                this.column2.arr.push(this.about.bufColumn[0])
+                this.about.bufColumn.splice(0, 1)
+                this.column1.arr.splice(this.about.id, 1)
+            }
+            else {
+                this.column2.arr.push(this.column1.arr[id])
+                this.column1.arr.splice(id, 1)
+            }
+        }
+        this.length()
+        localStorage.todo = JSON.stringify(this.column1.arr);
+        localStorage.todo2 = JSON.stringify(this.column2.arr);
+        localStorage.about = JSON.stringify(this.about)
+    },
