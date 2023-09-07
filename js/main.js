@@ -45,8 +45,8 @@ Vue.component('task', {
                     <div class="set_task">
                         <h3 class="title_task">
                         {{element.taskTitle}}
-                        <img id="deleteContent" v-if="id_column == 1 && datas.tasks.length > 3" 
-                        v-on:click="deleteContent(elementId)" src="static/remove.png">
+                        <img id="deleteContent" v-if="id_column == 1 && datas.tasks.length >= 1" 
+                        v-on:click="deleteContent(elementId)" class="img" src="./css/remove.png">
                         </h3>
                         <input 
                         v-on:click="checkbox(elementId),
@@ -80,7 +80,7 @@ Vue.component('task', {
     `,
     methods: {
         deleteContent(id) {
-            if(this.datas.tasks.length > 3 && this.id_column == 1)
+            if(this.datas.tasks.length > 1 && this.id_column == 1)
             this.datas.tasks.splice(id,1)
             this.save_task()
         },
@@ -114,7 +114,7 @@ Vue.component('task', {
             // else localStorage.todo2 = JSON.stringify(this.arr);
             if (this.id_column == 1)  localStorage.todo = JSON.stringify(this.arr);
             if (this.id_column == 2)  localStorage.todo2 = JSON.stringify(this.arr);
-            if (this.id_column == 2)  localStorage.todo3 = JSON.stringify(this.arr);
+            if (this.id_column == 3)  localStorage.todo3 = JSON.stringify(this.arr);
         },
         addTask() {
             if (this.taskTitle) {
@@ -193,7 +193,8 @@ let app = new Vue({
 methods: {
         
     forms() {
-        if (this.request && this.column1.arr.length < 3 && this.Task1 && this.Task2 && this.Task3) {
+        if (this.request && this.column1.arr.length <= 5 && this.Task1 && this.Task2 && this.Task3)
+         {
             this.column1.arr.push({
                 request: this.request,
                 tasks: [
@@ -208,16 +209,17 @@ methods: {
                     {
                         taskTitle: this.Task3,
                         completed: this.completed
-                    }
+                    },
                 ],
                 completedNum: 0,
             });
             this.request = null;
             this.Task1 = null;
             this.Task2 = null;
-            this.Task3 = null
+            this.Task3 = null;
             localStorage.todo = JSON.stringify(this.column1.arr);
         }
+
         this.length()
     },
     left_colm(id) {
@@ -240,6 +242,7 @@ methods: {
         this.length()
         localStorage.todo = JSON.stringify(this.column1.arr);
         localStorage.todo2 = JSON.stringify(this.column2.arr);
+        localStorage.todo3 = JSON.stringify(this.column3.arr);
         localStorage.about = JSON.stringify(this.about)
     },
     center_colm(id) {
